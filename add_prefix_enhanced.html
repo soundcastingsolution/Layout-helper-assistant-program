@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Prefix</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(145deg, #1d1f27, #282c34);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            width: 80%;
+            max-width: 400px;
+            background: #2a2e38;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .form-container h2 {
+            margin: 0;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        textarea, input[type="text"], input[type="submit"], button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        textarea {
+            background: #3a3f4b;
+            color: #ffffff;
+            height: 150px;
+            resize: none;
+        }
+        input[type="submit"], button {
+            background: #3a3f4b;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover, button:hover {
+            background: #505760;
+        }
+    </style>
+    <script>
+        function copyToClipboard() {
+            const inputField = document.getElementById("inputText");
+            inputField.select();
+            inputField.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            alert("Copied to clipboard!");
+        }
+
+        function clearField() {
+            document.getElementById("inputText").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Prefix</h2>
+        <form action="functions.php" method="POST">
+            <input type="hidden" name="operation" value="add_prefix">
+            <label for="prefix">Prefix:</label>
+            <input type="text" id="prefix" name="prefix" required>
+            <label for="inputText">Input Text (One value per line):</label>
+            <textarea id="inputText" name="inputText" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+        <button onclick="copyToClipboard()">Copy</button>
+        <button onclick="clearField()">Clear</button>
+    </div>
+</body>
+</html>
